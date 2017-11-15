@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hero and Villains</title>
+<link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+	<h2>Hero and Villains Game!</h2>
+
+	<div id="masthead"></div>
+
+	<h3>Meet Our Hero!</h3>
+	<br> Name: {{ hero.getName }}
+	<br> Health: {{ hero.getHealth }}
+	<br> Secret Identity: {{ hero.getSecretIdentity }}
+	<br> {{^hero.isAlive}} Hero is Dead {{/hero.isAlive}}
+
+
+	<h3>Meet Our Monster!</h3>
+	<br> Name: {{ monster.getName }}
+	<br> Health: {{ monster.getHealth }}
+	<br> Classification: {{ monster.getClassification }}
+	<br> {{^monster.isAlive}} Monster is Dead {{/monster.isAlive}}
+
+</body>
+</html>
