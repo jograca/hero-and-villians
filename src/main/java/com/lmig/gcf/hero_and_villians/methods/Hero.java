@@ -19,36 +19,13 @@ public class Hero extends LivingThing {
 	}
 
 	public void attack(LivingThing lt) {
-		// make the hero attack the Living Thing
-		// take a random amount of damage (1-10) off the hero
-		// take a random amount of damage (1-10) off the Living Thing
 
 		int monsterDamage = getRandomNumberInRange(1, 10);
 		int heroDamage = getRandomNumberInRange(1, 10);
-		
-		if (lt.getHealth() > 0) {
 
-			lt.setHealth(lt.getHealth() - monsterDamage);
-			this.setHealth(this.getHealth() - heroDamage);
+		lt.setHealth(lt.getHealth() - monsterDamage);
+		this.setHealth(this.getHealth() - heroDamage);
 
-			if (lt.getHealth() < 0) {
-				lt.setHealth(0);
-			}
-			
-		}
-	}
-	
-	public void deathFight(LivingThing lt) {
-		
-		int monsterDamage = getRandomNumberInRange(1, 10);
-		int heroDamage = getRandomNumberInRange(1, 10);
-		
-		while (lt.getHealth() > 0) {
-			
-			lt.setHealth(lt.getHealth() - monsterDamage);
-			this.setHealth(this.getHealth() - heroDamage);
-		}
-		
 	}
 
 	private int getRandomNumberInRange(int min, int max) {

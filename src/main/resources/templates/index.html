@@ -17,7 +17,7 @@
 	<br> Secret Identity: {{ hero.getSecretIdentity }}
 	<br> Health: {{ hero.getHealth }}
 	<br>
-	<p id="dead">{{^hero.isAlive}} Hero is Dead {{/hero.isAlive}}</p>
+	<p id="dead">{{^hero.isAlive}} {{ hero.getSecretIdentity }} is Dead {{/hero.isAlive}}</p>
 	<br>
 
 	<h3>Meet Our Monster!</h3>
@@ -25,17 +25,10 @@
 	<br> Classification: {{ monster.getClassification }}
 	<br> Health: {{ monster.getHealth }}
 	<br>
-	<p id="dead">{{^monster.isAlive}} Monster is Dead
+	<p id="dead">{{^monster.isAlive}} Your Monster {{ monster.getName }} is Dead
 		{{/monster.isAlive}}
 	<p>
 		<br>
-	<h3>Meet Our Damsel!</h3>
-	<br> Name: {{ damsel.getName }}
-	<br> Health: {{ damsel.getHealth }}
-	<br>
-	<br>
-	<br>
-	<br> 
 	{{^isGameOver}}
 	<form method="post" action="/attack">
 		<input type="hidden">
