@@ -1,5 +1,7 @@
 package com.lmig.gcf.hero_and_villians.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +15,14 @@ public class HomeController {
 	private Monster ourMonster;
 	private Hero ourHero;
 
+	// Constructor
 	public HomeController() {
+		initGame();
+	}
+
+	// Method to call Constructor
+	public void initGame() {
+
 		ourMonster = new Monster("Steve", 100, "Vampire");
 		ourHero = new Hero("Clark Kent", 100, "Superman");
 	}
@@ -33,6 +42,23 @@ public class HomeController {
 	@RequestMapping("/attack")
 	public ModelAndView attackPage() {
 
+		ArrayList<String> list = new ArrayList<String>();
+		
+		list.add("Jon");
+		list.add("Paul");
+		list.add("Graca");
+		
+		for (int i = 0; i <= (list.size() -1); i ++) {
+			System.out.println(list.get(i));
+		}
+		
+		for (String name : list) {
+			System.out.println(name);
+		}
+		
+		System.out.println("Monster Health is: " + ourMonster.getHealth());
+		System.out.println("Hero Health is: " + ourHero.getHealth());
+
 		ourHero.attack(ourMonster);
 
 		ModelAndView mv = new ModelAndView();
@@ -49,12 +75,12 @@ public class HomeController {
 	public ModelAndView deathPage() {
 
 		ourHero.attack(ourMonster);
-		
+
 		while (!isGameOver()) {
-			
-			//System.out.println("Monster Health is: " + ourMonster.getHealth());
-			//System.out.println("Hero Health is: " + ourHero.getHealth());
-			
+
+			System.out.println("Monster Health is: " + ourMonster.getHealth());
+			System.out.println("Hero Health is: " + ourHero.getHealth());
+
 			ourHero.attack(ourMonster);
 		}
 
@@ -71,8 +97,7 @@ public class HomeController {
 	@RequestMapping("/reset")
 	public ModelAndView resetPage() {
 
-		ourMonster = new Monster("Steve", 100, "Vampire");
-		ourHero = new Hero("Clark Kent", 100, "Superman");
+		initGame();
 
 		ModelAndView mv = new ModelAndView();
 
