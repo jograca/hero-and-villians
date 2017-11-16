@@ -10,18 +10,30 @@
 
 	<div id="masthead"></div>
 
+	<br>
+	<br>
 	<h3>Meet Our Hero!</h3>
 	<br> Name: {{ hero.getName }}
-	<br> Health: {{ hero.getHealth }}
 	<br> Secret Identity: {{ hero.getSecretIdentity }}
-	<br> {{^hero.isAlive}} Hero is Dead {{/hero.isAlive}}
-
+	<br> Health: {{ hero.getHealth }}
+	<br> 
+	<p id="dead">{{^hero.isAlive}} Hero is Dead {{/hero.isAlive}}</p>
+	<br>
 
 	<h3>Meet Our Monster!</h3>
 	<br> Name: {{ monster.getName }}
-	<br> Health: {{ monster.getHealth }}
 	<br> Classification: {{ monster.getClassification }}
-	<br> {{^monster.isAlive}} Monster is Dead {{/monster.isAlive}}
+	<br> Health: {{ monster.getHealth }}
+	<br>
+	<p id="dead">{{^monster.isAlive}} Monster is Dead {{/monster.isAlive}}<p>
+	<br>
+	<br>
+
+
+	<form method="post" action="/attack">
+		<input type="hidden">
+		<button id="button">Fight!</button>
+	</form>
 
 </body>
 </html>

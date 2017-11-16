@@ -14,7 +14,7 @@ public class HomeController {
 	private Hero ourHero;
 
 	public HomeController() {
-		ourMonster = new Monster("Steve", 80, "Vampire");
+		ourMonster = new Monster("Steve", 100, "Vampire");
 		ourHero = new Hero("Clark Kent", 100, "Superman");
 	}
 
@@ -25,7 +25,20 @@ public class HomeController {
 		
 		mv.addObject("monster", ourMonster);
 		mv.addObject("hero", ourHero);
+		mv.setViewName("index");
+
+		return mv;
+	}
+	
+	@RequestMapping("/attack")
+	public ModelAndView attackPage() {
 		
+		ourHero.attack(ourMonster);
+
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("monster", ourMonster);
+		mv.addObject("hero", ourHero);
 		mv.setViewName("index");
 
 		return mv;
