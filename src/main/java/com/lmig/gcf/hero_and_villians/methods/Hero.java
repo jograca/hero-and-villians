@@ -34,6 +34,7 @@ public class Hero extends LivingThing {
 			if (lt.getHealth() < 0) {
 				lt.setHealth(0);
 			}
+			
 		}
 	}
 

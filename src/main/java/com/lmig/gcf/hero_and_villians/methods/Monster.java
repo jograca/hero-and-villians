@@ -9,10 +9,6 @@ public class Monster extends LivingThing {
 
 		this.classification = classification;
 	}
-	
-	public void attack(LivingThing lt) {
-		lt.setHealth(0);
-	}
 
 	public String getClassification() {
 		return classification;
