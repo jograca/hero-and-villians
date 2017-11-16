@@ -44,9 +44,47 @@ public class HomeController {
 		mv.addObject("monster", ourMonster);
 		mv.addObject("hero", ourHero);
 		mv.addObject("damsel", ourDamsel); 
+		mv.addObject("isGameOver", this.isGameOver());
 		mv.setViewName("index");
 
 		return mv;
 	}
+	
+	@RequestMapping("/death")
+	public ModelAndView deathPage() {
+		
+		ourHero.deathFight(ourMonster);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("monster", ourMonster);
+		mv.addObject("hero", ourHero);
+		mv.addObject("damsel", ourDamsel); 
+		mv.addObject("isGameOver", this.isGameOver());
+		mv.setViewName("index");
 
+		return mv;
+	}
+	
+	@RequestMapping("/reset")
+	public ModelAndView resetPage() {
+		
+		ourHero.setHealth(100);
+		ourMonster.setHealth(100);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("monster", ourMonster);
+		mv.addObject("hero", ourHero);
+		mv.addObject("damsel", ourDamsel); 
+		mv.addObject("isGameOver", this.isGameOver());
+		mv.setViewName("index");
+
+		return mv;
+	}
+	
+	public boolean isGameOver() {
+		return (!ourMonster.isAlive() || !ourHero.isAlive());
+	}
+	
 }
