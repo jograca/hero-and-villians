@@ -10,6 +10,10 @@ public class Damsel extends LivingThing {
 		this.fearFactor = fearFactor;
 	}
 	
+	public boolean isAfraid() {
+		return (fearFactor > 25);
+	}
+	
 	public int getFearFactor() {
 		return fearFactor;
 	}	
