@@ -20,27 +20,35 @@
 	<p id="dead">{{^hero.isAlive}} {{ hero.getSecretIdentity }} is Dead {{/hero.isAlive}}</p>
 	<br>
 
-	<h3>Meet Our Monster!</h3>
-	<br> Name: {{ monster.getName }}
-	<br> Classification: {{ monster.getClassification }}
-	<br> Health: {{ monster.getHealth }}
-	<br>
-	<p id="dead">{{^monster.isAlive}} Your Monster {{ monster.getName }} is Dead
-		{{/monster.isAlive}}
-	<p>
-		<br>
-	{{^isGameOver}}
-	<form method="post" action="/attack">
-		<input type="hidden">
-		<button id="button">Fight!</button>
-	</form>
+	<h3>Meet Our Monsters!</h3>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Classification</th>
+				<th>Health</th>
+				<th>Is Alive</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#monsters}}
+				<tr>
+					<td>{{ getName }}</td>
+					<td>{{ getClassification }}</td>
+					<td>{{ getHealth }}</td>
+					<td>{{ isAlive }}</td>
+				</tr>
+			{{/monsters}}
+		</tbody>
+	</table>
 	<br>
 	<br>
 	<form method="post" action="/death">
 		<input type="hidden">
 		<button id="button">Fight to the Death!</button>
 	</form>
-	{{/isGameOver}}
+
 	<br>
 	<br>
 	<form method="post" action="/reset">

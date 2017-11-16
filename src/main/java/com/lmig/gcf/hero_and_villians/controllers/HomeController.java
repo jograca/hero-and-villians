@@ -12,7 +12,7 @@ import com.lmig.gcf.hero_and_villians.methods.Monster;
 @Controller
 public class HomeController {
 
-	private Monster ourMonster;
+	private ArrayList<Monster> ourMonsters;
 	private Hero ourHero;
 
 	// Constructor
@@ -23,8 +23,22 @@ public class HomeController {
 	// Method to call Constructor
 	public void initGame() {
 
-		ourMonster = new Monster("Steve", 100, "Vampire");
 		ourHero = new Hero("Clark Kent", 100, "Superman");
+
+		ourMonsters = new ArrayList<Monster>();
+
+		Monster monster1 = new Monster("Steve", 100, "Vampire");
+		Monster monster2 = new Monster("Jeff", 100, "Ogre");
+		Monster monster3 = new Monster("Guido", 100, "Warewolf");
+		Monster monster4 = new Monster("Sam", 100, "Vampire");
+		Monster monster5 = new Monster("Kevin", 100, "Zombie");
+
+		ourMonsters.add(monster1);
+		ourMonsters.add(monster2);
+		ourMonsters.add(monster3);
+		ourMonsters.add(monster4);
+		ourMonsters.add(monster5);
+
 	}
 
 	@RequestMapping("/")
@@ -32,66 +46,12 @@ public class HomeController {
 
 		ModelAndView mv = new ModelAndView();
 
-		mv.addObject("monster", ourMonster);
+		mv.addObject("monsters", ourMonsters);
 		mv.addObject("hero", ourHero);
 		mv.setViewName("index");
 
 		return mv;
-	}
 
-	@RequestMapping("/attack")
-	public ModelAndView attackPage() {
-
-		ArrayList<String> list = new ArrayList<String>();
-		
-		list.add("Jon");
-		list.add("Paul");
-		list.add("Graca");
-		
-		for (int i = 0; i <= (list.size() -1); i ++) {
-			System.out.println(list.get(i));
-		}
-		
-		for (String name : list) {
-			System.out.println(name);
-		}
-		
-		System.out.println("Monster Health is: " + ourMonster.getHealth());
-		System.out.println("Hero Health is: " + ourHero.getHealth());
-
-		ourHero.attack(ourMonster);
-
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("monster", ourMonster);
-		mv.addObject("hero", ourHero);
-		mv.addObject("isGameOver", this.isGameOver());
-		mv.setViewName("index");
-
-		return mv;
-	}
-
-	@RequestMapping("/death")
-	public ModelAndView deathPage() {
-
-		ourHero.attack(ourMonster);
-
-		while (!isGameOver()) {
-
-			System.out.println("Monster Health is: " + ourMonster.getHealth());
-			System.out.println("Hero Health is: " + ourHero.getHealth());
-
-			ourHero.attack(ourMonster);
-		}
-
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("monster", ourMonster);
-		mv.addObject("hero", ourHero);
-		mv.addObject("isGameOver", this.isGameOver());
-		mv.setViewName("index");
-
-		return mv;
 	}
 
 	@RequestMapping("/reset")
@@ -101,16 +61,44 @@ public class HomeController {
 
 		ModelAndView mv = new ModelAndView();
 
-		mv.addObject("monster", ourMonster);
+		mv.addObject("monsters", ourMonsters);
 		mv.addObject("hero", ourHero);
-		mv.addObject("isGameOver", this.isGameOver());
 		mv.setViewName("index");
 
 		return mv;
 	}
 
 	public boolean isGameOver() {
-		return (!ourMonster.isAlive() || !ourHero.isAlive());
+			for (Monster monster : ourMonsters) {
+				System.out.println("Monster " + monster.getName() + " is Alive: " + monster.isAlive());
+				return (!monster.isAlive() || !ourHero.isAlive());
+			} return false;
+		}
+
+	@RequestMapping("/death")
+	public ModelAndView deathPage() {
+
+		for (Monster monster : ourMonsters) {
+		
+			while (monster.isAlive()) {
+
+				System.out.println("Monster " + monster.getName() + " health is: " + monster.getHealth());
+				System.out.println("Hero Health is: " + ourHero.getHealth());
+
+				ourHero.attack(monster);
+				
+			}
+
+		}
+
+		ModelAndView mv = new ModelAndView();
+
+		mv.addObject("monster", ourMonsters);
+		mv.addObject("hero", ourHero);
+		mv.addObject("isGameOver", this.isGameOver());
+		mv.setViewName("index");
+
+		return mv;
 	}
 
 }
