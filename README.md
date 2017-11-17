@@ -1,4 +1,4 @@
-### Hero and Villians Game## Hero and Villains
+### Hero and Villians Game
 
 ### G4C Project from November 16th/ 17th
 
