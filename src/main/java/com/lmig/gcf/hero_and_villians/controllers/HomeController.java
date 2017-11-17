@@ -27,7 +27,7 @@ public class HomeController {
 
 		ourMonsters = new ArrayList<Monster>();
 
-		Monster monster1 = new Monster("Steve", 5, "Vampire");
+		Monster monster1 = new Monster("Steve", 100, "Vampire");
 		Monster monster2 = new Monster("Jeff", 100, "Ogre");
 		Monster monster3 = new Monster("Guido", 100, "Warewolf");
 		Monster monster4 = new Monster("Sam", 100, "Vampire");
@@ -89,9 +89,9 @@ public class HomeController {
 
 				ourHero.attack(monster);
 
-				if (!monster.isAlive()) {
-					killMonster(ourMonsters);
-				}
+//				if (!monster.isAlive()) {
+//					killMonster(ourMonsters);
+//				}
 				continue;
 
 			}
