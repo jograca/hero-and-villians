@@ -27,10 +27,10 @@ public class HomeController {
 
 		ourMonsters = new ArrayList<Monster>();
 
-		Monster monster1 = new Monster("Steve", 10, "Vampire");
-		Monster monster2 = new Monster("Jeff", 10, "Ogre");
-		Monster monster3 = new Monster("Kevin", 100, "Warewolf");
-		Monster monster4 = new Monster("Sam", 100, "Vampire");
+		Monster monster1 = new Monster("Steve", 1, "Vampire");
+		Monster monster2 = new Monster("Jeff", 1, "Ogre");
+		Monster monster3 = new Monster("Kevin", 1, "Warewolf");
+		Monster monster4 = new Monster("Sam", 1, "Vampire");
 		Monster monster5 = new Monster("Kevin", 100, "Zombie");
 
 		ourMonsters.add(monster1);
@@ -69,29 +69,29 @@ public class HomeController {
 	}
 
 	public boolean isGameOver() {
-		return (ourHero.isAlive() == false || ourMonsters.size() == 0);
+		return (!ourHero.isAlive() || ourMonsters.size() == 0);
 	}
 
 	public void killMonster(Monster monster) {
 		ourMonsters.remove(monster);
 	}
-
+	
 	@RequestMapping("/death")
 	public ModelAndView deathPage() {
 
 		while (!isGameOver()) {
-		
+
 			for (Monster monster : ourMonsters) {
-				
+
 				ourHero.attack(monster);
 
 				if (!monster.isAlive()) {
-					killMonster(monster);	
-				} break;
-	
-			} continue;
-			
-		} 
+					killMonster(monster);
+				}
+				break;
+			}
+		
+		}
 
 		ModelAndView mv = new ModelAndView();
 

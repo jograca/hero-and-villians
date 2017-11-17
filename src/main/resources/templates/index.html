@@ -17,7 +17,7 @@
 	<br> Secret Identity: {{ hero.getSecretIdentity }}
 	<br> Health: {{ hero.getHealth }}
 	<br>
-	<p id="dead">{{^hero.isAlive}} {{ hero.getSecretIdentity }} is Dead {{/hero.isAlive}}</p>
+	<p id="dead">{{^hero.isAlive}} {{ hero.getSecretIdentity }} is Dead {{/hero.isAlive}}</p>	
 	<br>
 
 	<table>
@@ -42,6 +42,7 @@
 	</table>
 	<br>
 	<br>
+
 	<form method="post" action="/death">
 		<input type="hidden">
 		<button id="button">Fight to the Death!</button>
