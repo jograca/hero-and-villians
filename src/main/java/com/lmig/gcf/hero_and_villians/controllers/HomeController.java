@@ -69,12 +69,10 @@ public class HomeController {
 	}
 
 	public boolean isGameOver() {
-		System.out.println(ourMonsters.size());
 		return (ourHero.isAlive() == false || ourMonsters.size() == 0);
 	}
 
 	public void killMonster(Monster monster) {
-		System.out.println("Attempting to remove Monster: " + monster.getName());
 		ourMonsters.remove(monster);
 	}
 
@@ -85,9 +83,6 @@ public class HomeController {
 		
 			for (Monster monster : ourMonsters) {
 				
-				System.out.println("Monster " + monster.getName() + " health is: " + monster.getHealth());
-				System.out.println("Hero Health is: " + ourHero.getHealth());
-
 				ourHero.attack(monster);
 
 				if (!monster.isAlive()) {
