@@ -27,7 +27,7 @@ public class HomeController {
 
 		ourMonsters = new ArrayList<Monster>();
 
-		Monster monster1 = new Monster("Steve", 100, "Vampire");
+		Monster monster1 = new Monster("Steve", 5, "Vampire");
 		Monster monster2 = new Monster("Jeff", 100, "Ogre");
 		Monster monster3 = new Monster("Guido", 100, "Warewolf");
 		Monster monster4 = new Monster("Sam", 100, "Vampire");
@@ -69,25 +69,33 @@ public class HomeController {
 	}
 
 	public boolean isGameOver() {
-			for (Monster monster : ourMonsters) {
-				System.out.println("Monster " + monster.getName() + " is Alive: " + monster.isAlive());
-				return (!monster.isAlive() || !ourHero.isAlive());
-			} return false;
-		}
+		System.out.println(ourMonsters.size());
+		return (ourHero.isAlive() == false || ourMonsters.size() == 0);
+	}
+
+	public void killMonster(ArrayList<Monster> monsters) {
+		ourMonsters.remove(0);
+	}
 
 	@RequestMapping("/death")
 	public ModelAndView deathPage() {
 
-		for (Monster monster : ourMonsters) {
-		
-			while (monster.isAlive()) {
+		while (!isGameOver()) {
+
+			for (Monster monster : ourMonsters) {
 
 				System.out.println("Monster " + monster.getName() + " health is: " + monster.getHealth());
 				System.out.println("Hero Health is: " + ourHero.getHealth());
 
 				ourHero.attack(monster);
-				
+
+				if (!monster.isAlive()) {
+					killMonster(ourMonsters);
+				}
+				continue;
+
 			}
+			break;
 
 		}
 
@@ -100,5 +108,47 @@ public class HomeController {
 
 		return mv;
 	}
+
+	//
+	// @RequestMapping("/death")
+	// public ModelAndView fightPage() {
+	//
+	// ModelAndView mv = new ModelAndView();
+	//
+	// for (int i = 0; i < ourMonsters.size(); i++ ) {
+	//
+	// while (this.isGameOver() == false) {
+	// ourHero.attack(ourMonsters.get(0));
+	// }
+	// }
+	//
+	// mv.addObject("monster", ourMonsters);
+	// mv.addObject("hero", ourHero);
+	// mv.addObject("isGameOver", this.isGameOver());
+	// mv.setViewName("index");
+	//
+	// return mv;
+	// }
+
+	// public boolean isGameOver() {
+	// for (Monster monster : ourMonsters) {
+	// System.out.println("Monster " + monster.getName() + " is Alive: " +
+	// monster.isAlive());
+	// return (!monster.isAlive() || !ourHero.isAlive());
+	// }
+	// return false;
+	// }
+
+	// public boolean isGameOver() {
+	//
+	// System.out.println(ourMonsters.size());
+	// System.out.println(ourHero.isAlive());
+	//
+	// if (!ourHero.isAlive() || ourMonsters.size() == 0) {
+	// return true;
+	// }
+	// return false;
+	// }
+	//
 
 }
